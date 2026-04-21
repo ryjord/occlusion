@@ -1,10 +1,12 @@
 "use client";
 
 // Libs
+import React from 'react';
 import { useRouter } from 'next/navigation';
 
 // Components
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from './themetoggle';
 
 // Services
 import { useDashboardStore } from '@/store/useDashboardStore';
@@ -44,9 +46,12 @@ export function Sidebar() {
         </Button>
       </nav>
       <div className="p-4 border-t border-slate-800">
-        <div className="mb-4 px-2">
-          <p className="text-sm font-medium text-white">{user?.fullName || 'Operator'}</p>
-          <p className="text-xs text-slate-500 uppercase tracking-wider">{user?.role || 'Guest'}</p>
+        <div className="mb-4 px-2 flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium text-white">{user?.fullName || 'Operator'}</p>
+            <p className="text-xs text-slate-500 uppercase tracking-wider">{user?.role || 'Guest'}</p>
+          </div>
+          <ThemeToggle />
         </div>
         <Button
           variant="destructive"
