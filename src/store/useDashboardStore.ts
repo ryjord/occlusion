@@ -14,7 +14,8 @@ interface DashboardState {
   loginError: string | null;
   login: (employeeId: string, passwordPlain: string, hardwareId: string) => Promise<boolean>;
   logout: () => void;
-}
+
+};
 
 export const useDashboardStore = create<DashboardState>((set) => ({
   user: null,

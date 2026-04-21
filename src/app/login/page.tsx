@@ -1,83 +1,43 @@
-"use client";
-
-// Libs
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 // Components
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-// Services
-import { useDashboardStore } from '@/store/useDashboardStore';
+import { LoginForm } from '@/components/auth/LoginForm';
+// Icons
+import { Activity } from 'lucide-react';
 
 export default function LoginPage() {
-  const router = useRouter();
-  const { login, isLoading, loginError } = useDashboardStore();
-
-  const [employeeId, setEmployeeId] = useState('');
-  const [password, setPassword] = useState('');
-  // Simulating the hardware ID reading for the TRL 3 Prototype
-  const mockHardwareId = 'IPAD-PRO-998877';
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const isSuccess = await login(employeeId, password, mockHardwareId);
-
-    if (!!isSuccess) {
-      router.push('/');
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md shadow-lg border-slate-200">
-        <CardHeader className="space-y-1 text-center bg-slate-900 text-slate-50 rounded-t-xl pb-8 pt-8">
-          <CardTitle className="text-2xl font-bold tracking-tight">TRL 3 AR System</CardTitle>
-          <CardDescription className="text-slate-400">Secure Depot Authentication</CardDescription>
-        </CardHeader>
-        <CardContent className="pt-6">
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="employeeId">Employee ID</Label>
-              <Input
-                id="employeeId"
-                placeholder="e.g. ADM-001"
-                value={employeeId}
-                onChange={(e) => setEmployeeId(e.target.value)}
-                required
-              />
+    <div className="min-h-screen w-full flex flex-col md:flex-row bg-white dark:bg-slate-950">
+      <div className="hidden md:flex flex-col justify-between w-1/2 bg-slate-900 p-12 text-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-linear-to-br from-blue-900/20 to-slate-900 pointer-events-none" />
+        <div className="absolute -left-24 -bottom-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative z-10 flex items-center gap-3">
+          <div className="p-2 bg-blue-600 rounded-lg">
+            <Activity className="h-6 w-6 text-white" />
+          </div>
+          <span className="text-xl font-bold tracking-wider">OCCLUSION AR</span>
+        </div>
+        <div className="relative z-10 space-y-6 max-w-lg">
+          <h1 className="text-4xl font-bold leading-tight">
+            Advanced spatial telemetry and fault diagnostics.
+          </h1>
+          <p className="text-slate-400 text-lg leading-relaxed">
+            Securely access the TRL 3 Dashboard to monitor active technicians, track hardware telemetry, and review spatial repair logs in real-time.
+          </p>
+        </div>
+        <div className="relative z-10 text-slate-500 text-sm font-medium">
+          System Build v0.1.0 • Enterprise Edition
+        </div>
+      </div>
+      <div className="flex-1 flex items-center justify-center p-8 md:p-24 bg-slate-50 dark:bg-slate-950">
+        <div className="w-full max-w-md relative">
+          <div className="flex md:hidden items-center gap-2 mb-8 text-slate-900 dark:text-white">
+            <div className="p-1.5 bg-blue-600 rounded-md">
+              <Activity className="h-5 w-5 text-white" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Security Passkey</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-
-            {!!loginError && (
-              <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md">
-                {loginError}
-              </div>
-            )}
-
-            <Button
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-              disabled={!!isLoading}
-            >
-              {!!isLoading ? 'Authenticating...' : 'Access Terminal'}
-            </Button>
-          </form>
-        </CardContent>
-        <CardFooter className="text-center text-xs text-slate-500 justify-center pb-6">
-          <p>Hardware ID binding enforced. Unregistered devices will be blocked.</p>
-        </CardFooter>
-      </Card>
+            <span className="text-lg font-bold">OCCLUSION</span>
+          </div>
+          <LoginForm />
+        </div>
+      </div>
     </div>
   );
 }

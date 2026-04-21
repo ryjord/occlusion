@@ -36,7 +36,6 @@ export default function DashboardPage() {
         <h1 className="text-3xl font-bold text-slate-900">System Overview</h1>
         <p className="text-slate-500">Welcome back, {user?.fullName || 'Operator'}</p>
       </header>
-
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <Card className="shadow-sm border-slate-100">
           <CardHeader className="pb-2">
@@ -46,7 +45,6 @@ export default function DashboardPage() {
             <p className="text-3xl font-bold text-red-600">{stats.openFaults}</p>
           </CardContent>
         </Card>
-
         <Card className="shadow-sm border-slate-100">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-slate-500">Resolved</CardTitle>
@@ -55,7 +53,6 @@ export default function DashboardPage() {
             <p className="text-3xl font-bold text-green-600">{stats.resolvedFaults}</p>
           </CardContent>
         </Card>
-
         <Card className="shadow-sm border-slate-100">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-slate-500">Tracked Tools</CardTitle>
@@ -64,7 +61,6 @@ export default function DashboardPage() {
             <p className="text-3xl font-bold text-blue-600">{stats.activeTools}</p>
           </CardContent>
         </Card>
-
         <Card className="shadow-sm border-slate-100">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-slate-500">System MTTR</CardTitle>
