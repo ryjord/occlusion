@@ -1,11 +1,12 @@
 // Components
 import { LoginForm } from '@/components/auth/LoginForm';
+
 // Icons
 import { Activity } from 'lucide-react';
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row bg-white">
+    <div className="min-h-screen w-full flex flex-col md:flex-row bg-white dark:bg-slate-950">
       <div className="hidden md:flex flex-col justify-between w-1/2 bg-slate-900 p-12 text-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-linear-to-br from-blue-900/20 to-slate-900 pointer-events-none" />
         <div className="absolute -left-24 -bottom-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
@@ -27,9 +28,9 @@ export default function LoginPage() {
           System Build v0.1.0 • Enterprise Edition
         </div>
       </div>
-      <div className="flex-1 flex items-center justify-center p-8 md:p-24 bg-slate-50">
-        <div className="w-full max-w-md">
-          <div className="flex md:hidden items-center gap-2 mb-8 text-slate-900">
+      <div className="flex-1 flex items-center justify-center p-8 md:p-24 bg-slate-50 dark:bg-slate-950">
+        <div className="w-full max-w-md relative">
+          <div className="flex md:hidden items-center gap-2 mb-8 text-slate-900 dark:text-white">
             <div className="p-1.5 bg-blue-600 rounded-md">
               <Activity className="h-5 w-5 text-white" />
             </div>
