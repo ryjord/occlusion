@@ -3,16 +3,20 @@
 // Libs
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+
 // Components
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+
 // Services
 import { useDashboardStore } from '@/store/useDashboardStore';
+
 // Icons
 import { ShieldAlert, Loader2 } from 'lucide-react';
 
+// Main Logout Form
 export function LoginForm() {
   const router = useRouter();
   const { login, isLoading, loginError } = useDashboardStore();
@@ -48,7 +52,7 @@ export function LoginForm() {
               id="employeeId"
               placeholder="e.g. ADM-001"
               value={employeeId}
-              onChange={(e) => setEmployeeId(e.target.value)}
+              onChange={(event) => setEmployeeId(event.target.value)}
               className="h-12 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 dark:text-white focus-visible:ring-blue-600"
               required
             />
@@ -61,7 +65,7 @@ export function LoginForm() {
               id="password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
               className="h-12 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 dark:text-white focus-visible:ring-blue-600"
               required
             />

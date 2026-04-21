@@ -1,11 +1,14 @@
 // Libs
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 // Components
 import { ThemeProvider } from "@/components/theme-provider";
+
 // Styles
 import "./globals.css";
 
+// Fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -16,16 +19,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Metadata
 export const metadata: Metadata = {
   title: "Occlusion AR Dashboard",
   description: "TRL 3 Prototype System",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+// Main Layout
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
@@ -35,7 +36,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          { children }
         </ThemeProvider>
       </body>
     </html>

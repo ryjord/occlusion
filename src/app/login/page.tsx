@@ -1,5 +1,6 @@
 // Components
 import { LoginForm } from '@/components/auth/LoginForm';
+
 // Icons
 import { Activity } from 'lucide-react';
 
