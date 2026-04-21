@@ -1,12 +1,13 @@
 "use client";
 
 // Libs
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 // Components
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Sidebar } from '@/components/layout/sidebar';
+import { AuditTrailTable } from '@/components/dashboard/AuditTrailTable';
 
 // Services
 import { useDashboardStore } from '@/store/useDashboardStore';
@@ -14,8 +15,15 @@ import { useDashboardStore } from '@/store/useDashboardStore';
 export default function DashboardPage() {
   const router = useRouter();
   const { user, stats, isLoading, fetchStats } = useDashboardStore();
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+
+    if (!isMounted) {
+      return;
+    }
+
     if (!user) {
       router.push('/login');
       return;
@@ -23,7 +31,7 @@ export default function DashboardPage() {
     fetchStats();
   }, [user, router, fetchStats]);
 
-  if (!!isLoading || !stats) {
+  if (!isMounted || !!isLoading || !stats) {
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center">
         <p className="text-slate-500 font-medium animate-pulse">Establishing Secure Connection...</p>
@@ -77,9 +85,7 @@ export default function DashboardPage() {
         </div>
         <div className="mt-8">
           <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Recent Audit Activity</h2>
-          <Card className="border-slate-200 dark:border-slate-800 dark:bg-slate-900 p-8 border-dashed flex items-center justify-center">
-            <p className="text-slate-500">Audit Trail Table Component will render here.</p>
-          </Card>
+          <AuditTrailTable />
         </div>
       </main>
     </div>
