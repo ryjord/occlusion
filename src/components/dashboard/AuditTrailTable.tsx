@@ -4,7 +4,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 
-// Temporary
+// Temporary Data
 const auditLogs = [
   { id: 'LOG-001', technician: 'TECH-001', action: 'Resolved Fault', component: 'Track Switch A4', status: 'success', timestamp: '2026-04-21 08:30:00' },
   { id: 'LOG-002', technician: 'ADM-001', action: 'Hardware Diagnostic', component: 'AR Headset 2', status: 'info', timestamp: '2026-04-21 09:15:22' },
