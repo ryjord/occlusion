@@ -18,6 +18,8 @@ interface IStats {
   mttrHours: number;
 }
 
+const API_URL = process.env.NODE_ENV === 'production' ? 'https://occlusion-backend.vercel.app' : 'http://localhost:3001';
+
 // Dashboard State Interface
 interface IDashboardState {
   // Auth State
@@ -44,7 +46,7 @@ export const useDashboardStore = create<IDashboardState>()(
       login: async (employeeId, passwordPlain, hardwareId) => {
         set({ isLoading: true, loginError: null });
         try {
-          const res = await fetch('http://localhost:3000/api/auth/login', {
+          const res = await fetch(`${API_URL}/api/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -71,7 +73,7 @@ export const useDashboardStore = create<IDashboardState>()(
     // Logout
       logout: async () => {
         try {
-          await fetch('http://localhost:3000/api/auth/logout', {
+          await fetch(`${API_URL}/api/auth/logout`, {
             method: 'POST',
             credentials: 'include'
           });
@@ -86,16 +88,18 @@ export const useDashboardStore = create<IDashboardState>()(
       fetchStats: async () => {
         set({ isLoading: true });
         try {
-          const res = await fetch('http://localhost:3000/api/dashboard/stats', {
+          const res = await fetch(`${API_URL}/api/dashboard/stats`, {
             credentials: 'include'
           });
           const json = await res.json();
           if (!!json.success) {
             set({ stats: json.data, isLoading: false });
+          } else {
+            set({ user: null, stats: null, isLoading: false });
           }
         } catch(error) {
           console.error("Failed to fetch dashboard stats", error);
-          set({ isLoading: false });
+          set({ user: null, stats: null, isLoading: false });
         }
       },
     }),
