@@ -19,7 +19,9 @@ export default function DashboardPage() {
 
   useEffect(() => {
     setIsMounted(true);
+  });
 
+  useEffect(() => {
     if (!isMounted) {
       return;
     }
@@ -28,8 +30,12 @@ export default function DashboardPage() {
       router.push('/login');
       return;
     }
-    fetchStats();
-  }, [user, router, fetchStats]);
+
+    if (!stats) {
+      fetchStats();
+    }
+
+  }, [isMounted, user]);
 
   if (!isMounted || !!isLoading || !stats) {
     return (
