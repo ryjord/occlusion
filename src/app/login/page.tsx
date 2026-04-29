@@ -7,7 +7,7 @@ import { Activity } from 'lucide-react';
 export default function LoginPage() {
   return (
     <div className="min-h-screen w-full flex flex-col md:flex-row bg-white dark:bg-slate-950">
-      <div className="hidden md:flex flex-col justify-between w-1/2 bg-slate-900 p-12 text-white relative overflow-hidden">
+      <div className="hidden md:flex flex-col justify-between w-1/2 bg-slate-900 p-12 text-white relative overflow-visible">
         <div className="absolute top-0 left-0 w-full h-full bg-linear-to-br from-blue-900/20 to-slate-900 pointer-events-none" />
         <div className="absolute -left-24 -bottom-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 flex items-center gap-3">
@@ -30,13 +30,20 @@ export default function LoginPage() {
       </div>
       <div className="flex-1 flex items-center justify-center p-8 md:p-24 bg-slate-50 dark:bg-slate-950">
         <div className="w-full max-w-md relative">
-          <div className="flex md:hidden items-center gap-2 mb-8 text-slate-900 dark:text-white">
-            <div className="p-1.5 bg-blue-600 rounded-md">
-              <Activity className="h-5 w-5 text-white" />
+  
+          {/* CARD */}
+          <div className="w-full rounded-xl bg-slate-900 border border-blue-500/30 p-8 shadow-[0_0_10px_5px_rgba(59,130,246,0.4)]">
+            
+            <div className="flex md:hidden items-center gap-2 mb-8 text-slate-900 dark:text-white">
+              <div className="p-1.5 bg-blue-600 rounded-md">
+                <Activity className="h-5 w-5 text-white" />
+              </div>
+              <span className="text-lg font-bold">OCCLUSION</span>
             </div>
-            <span className="text-lg font-bold">OCCLUSION</span>
+
+            <LoginForm />
+
           </div>
-          <LoginForm />
         </div>
       </div>
     </div>
