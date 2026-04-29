@@ -93,7 +93,7 @@ export function LoginForm() {
         </form>
       </CardContent>
       <CardFooter className="px-0 pt-6">
-        <p className="text-xs text-slate-500 dark:text-slate-500 text-center w-full">
+        <p className="text-xs text-slate-500 dark:text-slate-500 text-center w-full px-4">
           Hardware ID binding enforced. Unregistered devices will be blocked by the Edge Network.
         </p>
       </CardFooter>
