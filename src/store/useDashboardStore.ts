@@ -31,6 +31,7 @@ interface IDashboardState {
   // Stats State
   stats: IStats | null;
   isLoading: boolean;
+  recentActivity: any[];
   fetchStats: () => Promise<void>;
 }
 
@@ -43,6 +44,7 @@ export const useDashboardStore = create<IDashboardState>()(
       isLoading: false,
 
     // Login
+      recentActivity: [],
       login: async (employeeId, passwordPlain, hardwareId) => {
         set({ isLoading: true, loginError: null });
         try {
@@ -93,13 +95,13 @@ export const useDashboardStore = create<IDashboardState>()(
           });
           const json = await res.json();
           if (!!json.success) {
-            set({ stats: json.data, isLoading: false });
+            set({ stats: json.data, recentActivity: json.data.recentActivity || [], isLoading: false });
           } else {
-            set({ user: null, stats: null, isLoading: false });
+            set({ user: null, stats: null, recentActivity: [], isLoading: false });
           }
         } catch(error) {
-          console.error("Failed to fetch dashboard stats", error);
-          set({ user: null, stats: null, isLoading: false });
+          console.error('Failed to fetch dashboard stats', error);
+          set({ user: null, stats: null, recentActivity: [], isLoading: false });
         }
       },
     }),
