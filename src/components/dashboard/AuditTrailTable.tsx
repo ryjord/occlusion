@@ -45,7 +45,7 @@ export function AuditTrailTable() {
   };
 
   return (
-    <div className="rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-visible">
+    <div className="rounded-md border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
       <Table>
         <TableHeader className="bg-slate-50 dark:bg-slate-900/50">
           <TableRow className="border-slate-200 dark:border-slate-800">
