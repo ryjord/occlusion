@@ -32,9 +32,8 @@ export default function LoginPage() {
       <div className="flex-1 flex items-center justify-center p-4 md:p-24 bg-slate-50 dark:bg-slate-950 relative">
         <div className="w-full max-w-md relative z-10">
           <div className="relative w-full rounded-xl overflow-visible shadow-[0_0_40px_20px_rgba(59,130,246,0.25)]">
-            <div className="absolute inset-[-24px] rounded-xl pointer-events-none z-20">
-              <div className="absolute h-16 w-16 rounded-full bg-red-500 blur-xl" />
-              <div style={{ animation: "rectOrbit 18s linear infinite" }}>
+            <div className="absolute inset-[-24px] rounded-xl pointer-events-none">
+              <div style={{ animation: "rectOrbit 18s linear infinite" }} className="absolute h-16 w-16 rounded-full bg-blue-500 blur-xl" />
             </div>
             <div className="relative z-10 rounded-xl bg-slate-900 border border-blue-500/30 m-[2px]">
               <div className="flex md:hidden items-center gap-2 mb-8 text-slate-900 dark:text-white">

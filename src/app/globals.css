@@ -4,6 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -131,31 +132,26 @@
 @keyframes rectOrbit {
   0% {
     top: 0%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0%;
   }
 
   25% {
-    top: 50%;
-    left: 100%;
-    transform: translate(-50%, -50%);
+    top: 0%;
+    left: 85%;
   }
 
   50% {
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 85%;
+    left: 85%;
   }
 
   75% {
-    top: 50%;
+    top: 85%;
     left: 0%;
-    transform: translate(-50%, -50%);
   }
 
   100% {
     top: 0%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0%;
   }
 }
