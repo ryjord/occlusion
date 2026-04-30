@@ -37,9 +37,13 @@ export default function DashboardPage() {
       return;
     }
 
-    if (!stats) {
+    fetchStats();
+
+    const liveFeed = setInterval(() => {
       fetchStats();
-    }
+    }, 10000);
+
+    return () => clearInterval(liveFeed);
   }, [isMounted, user]);
 
   if (!isMounted || (!!isLoading && !stats) || !stats) {
