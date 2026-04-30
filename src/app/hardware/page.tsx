@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 // Libs
 import React from 'react';
 
