@@ -14,12 +14,18 @@ import { useDashboardStore } from '@/store/useDashboardStore';
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { user, stats, isLoading, fetchStats } = useDashboardStore();
+
+  // Use atomic selectors to prevent unnecessary re-renders
+  const user = useDashboardStore((state) => state.user);
+  const stats = useDashboardStore((state) => state.stats);
+  const isLoading = useDashboardStore((state) => state.isLoading);
+  const fetchStats = useDashboardStore((state) => state.fetchStats);
+
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-  });
+  }, []);
 
   useEffect(() => {
     if (!isMounted) {
@@ -34,10 +40,9 @@ export default function DashboardPage() {
     if (!stats) {
       fetchStats();
     }
-
   }, [isMounted, user]);
 
-  if (!isMounted || !!isLoading || !stats) {
+  if (!isMounted || (!!isLoading && !stats) || !stats) {
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center">
         <p className="text-slate-500 font-medium animate-pulse">Establishing Secure Connection...</p>
@@ -51,9 +56,7 @@ export default function DashboardPage() {
       <main className="flex-1 p-8 overflow-y-auto">
         <header className="mb-8">
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white">System Overview</h1>
-          <p className="text-slate-500 dark:text-slate-400">
-            Welcome back, {user?.fullName}. Terminal connection secure.
-          </p>
+          <p className="text-slate-500 dark:text-slate-400">Welcome back, { user?.fullName }. Terminal connection secure.</p>
         </header>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card className="shadow-sm border-slate-200 dark:border-slate-800 dark:bg-slate-900">
@@ -61,7 +64,7 @@ export default function DashboardPage() {
               <CardTitle className="text-sm font-medium text-slate-500">Open Faults</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold text-red-600 dark:text-red-500">{stats.openFaults}</p>
+              <p className="text-3xl font-bold text-red-600 dark:text-red-500">{ stats.openFaults }</p>
             </CardContent>
           </Card>
           <Card className="shadow-sm border-slate-200 dark:border-slate-800 dark:bg-slate-900">
@@ -69,7 +72,7 @@ export default function DashboardPage() {
               <CardTitle className="text-sm font-medium text-slate-500">Resolved</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-500">{stats.resolvedFaults}</p>
+              <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-500">{ stats.resolvedFaults }</p>
             </CardContent>
           </Card>
           <Card className="shadow-sm border-slate-200 dark:border-slate-800 dark:bg-slate-900">
@@ -77,7 +80,7 @@ export default function DashboardPage() {
               <CardTitle className="text-sm font-medium text-slate-500">Active AR Tools</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold text-blue-600 dark:text-blue-500">{stats.activeTools}</p>
+              <p className="text-3xl font-bold text-blue-600 dark:text-blue-500">{ stats.activeTools }</p>
             </CardContent>
           </Card>
           <Card className="shadow-sm border-slate-200 dark:border-slate-800 dark:bg-slate-900">
@@ -85,7 +88,7 @@ export default function DashboardPage() {
               <CardTitle className="text-sm font-medium text-slate-500">System MTTR</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold text-purple-600 dark:text-purple-500">{stats.mttrHours} hrs</p>
+              <p className="text-3xl font-bold text-purple-600 dark:text-purple-500">{ stats.mttrHours } hrs</p>
             </CardContent>
           </Card>
         </div>
